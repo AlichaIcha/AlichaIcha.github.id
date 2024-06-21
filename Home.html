@@ -1,0 +1,376 @@
+<html lang="es">
+ <head> 
+  <meta charset="UTF-8"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <title>Alicha XD INC</title> 
+  <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-image: url("https://telegra.ph/file/e851a1500a8864e5fb17f.jpg");
+            background-size: 525px;
+            background-color: #000;
+            margin: 0;
+            padding: 0;
+            color: #fff;
+        }
+
+        header {
+            background-color: #335;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav {
+            background-color: #555;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+            font-weight: bold;
+            cursor: pointer;
+            border: 1px solid #333;
+            border-radius: 10px;
+            padding: 8px 16px;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        nav a:hover {
+            background-color: #333;
+        }
+
+        section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 20px;
+            overflow-y: auto;
+            max-height: 500px; /* Altura máxima de la sección antes de aparecer la barra de desplazamiento */
+        }
+
+        .product {
+            background-color: #000;
+            border: 2px solid #fff;
+            border-radius: 10px;
+            margin: 10px;
+            padding: 15px;
+            width: 200px;
+            text-align: center;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .product:hover {
+            transform: scale(1.1);
+        }
+
+        .btn {
+            background-color: #000;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            margin: 5px;
+            border: 1px solid #fff;
+            border-radius: 10px;
+            display: inline-block;
+            font-weight: bold;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .btn:hover {
+            background-color: #333;
+        }
+
+        .description {
+            display: none;
+        }
+
+        .show-description {
+            cursor: pointer;
+            color: #333;
+            text-decoration: underline;
+            margin-top: 10px;
+            display: block;
+            font-weight: bold;
+        }
+
+        .show-description:hover + .description {
+            display: block;
+            animation: fade 1s;
+        }
+
+        .profile-section {
+            margin: 20px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+        }
+
+        .profile-section h2 {
+            color: #555;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .profile-details {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        #clock {
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            margin: 10px 0;
+            color: #333;
+        }
+
+        .social-links {
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .social-links h3 {
+            color: #555;
+            font-weight: bold;
+        }
+
+        .social-links a {
+            display: inline-block;
+            margin: 5px;
+            padding: 8px 16px;
+            background-color: #000;
+            color: #fff;
+            text-decoration: none;
+            border: 1px solid #fff;
+            border-radius: 10px;
+            font-weight: bold;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .social-links a:hover {
+            background-color: #333;
+        }
+
+        .community-links {
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .community-links h3 {
+            color: #555;
+            font-weight: bold;
+        }
+
+        .community-links a {
+            display: inline-block;
+            margin: 5px;
+            padding: 8px 16px;
+            background-color: #000;
+            color: #fff;
+            text-decoration: none;
+            border: 1px solid #fff;
+            border-radius: 10px;
+            font-weight: bold;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .community-links a:hover {
+            background-color: #333;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            background-color: #000;
+            color: #fff;
+            padding: 5px 10px;
+            border: 1px solid #fff;
+            border-radius: 5px;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .close-btn:hover {
+            background-color: #333;
+        }
+
+        .footer {
+            margin-top: 20px;
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .footer a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+            font-weight: bold;
+            cursor: pointer;
+            border: 1px solid #fff;
+            border-radius: 10px;
+            padding: 8px 16px;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .footer a:hover {
+            background-color: #555;
+        }
+
+        @keyframes fade {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style> 
+  <link rel="me" href="https://www.blogger.com/profile/16180736809004635897"> 
+  <meta name="google-adsense-platform-account" content="ca-host-pub-1556223355139109"> 
+  <meta name="google-adsense-platform-domain" content="blogspot.com"> 
+ </head> 
+ <body> 
+  <div class="header"> 
+   <img src="https://telegra.ph/file/8a0429de145cf8b06c0d8.jpg" alt="" style="width:43px;height:43px;"> 
+   <header> 
+    <h1>ALICHA XD INC</h1> 
+    <h2>MODDERS ANDROID &amp; DEVELOPER APPS</h2> 
+   </header> 
+   <nav> 
+    <a href="#" onclick="mostrarProductoAleatorio()">Home</a> 
+    <a href="#" onclick="mostrarPerfil()">Profil</a> 
+    <a href="#" onclick="mostrarContacto()">Kontak</a> 
+   </nav> 
+   <section>
+     </div> 
+    </div> 
+    <!-- Agrega más productos similares aquí --> 
+    <div class="footer"> 
+     <a link="" href="https://whatsapp.com/channel/0029VaeOcyy59PwVACImgZ3d" target="_blank">SHARE TOOLS & FIND TOOLS 2024</a> 
+     <div class="footer"> 
+      <a link="" href="https://whatsapp.com/channel/0029VaFr4wY9Bb5yTe12yX1a" target="_blank"> SERBA SERBI GRATIS 2024</a> 
+     </div>
+    </div>
+   </section> 
+   <div class="profile-section" id="profileSection"> 
+    <span class="close-btn" onclick="cerrarVentana('profileSection')">keluar</span> 
+    <h2>Profil pengguna</h2> 
+    <p class="profile-details">Nama pengguna: FADLAN DEVELOPER</p> 
+    <!-- Agrega más detalles de perfil según sea necesario --> 
+    <!-- Reloj con la hora y fecha del país del usuario --> 
+    <div id=""></div> 
+    <div class="social-links"> 
+     <h3>KONTAK</h3> 
+     <a href="https://wa.me/6281400346604" target="_blank">WhatsApp</a> 
+     <a href="https://youtube.com/@bfgsbyfadlangenzsubscribe6157" target="_blank">YouTube</a> 
+     <a href=" https://www.instagram.com/fadlangenz" target="_blank">WEBSITE</a> 
+    </div> 
+    <div class="community-links"> 
+     <h3>KOMUNITAS</h3> 
+     <a href="https://chat.whatsapp.com/Ks2abkgLzJjBOX79GyNZcI" target="_blank">Grup WhatsApp</a> 
+     <a href="https://chat.whatsapp.com/Ks2abkgLzJjBOX79GyNZcI" target="_blank">WEBSITE</a> 
+     <!-- Agrega más enlaces de la comunidad según sea necesario --> 
+    </div> 
+   </div> 
+   <div class="overlay" id="overlay"></div> 
+   <div class="modal" id="contactModal"> 
+    <span class="close-btn" onclick="cerrarVentana('contactModal')">keluar</span> 
+    <h2>KONTAK</h2> 
+    <div class="social-links"> 
+     <a href="https://wa.me/6281400346604" target="_blank">WhatsApp</a> 
+     <a href="https://www.instagram.com/fadlangenz" target="_blank">WEBSITE</a> 
+    </div> 
+    <div class="community-links"> 
+     <h3>KOMUNITAS</h3> 
+     <a href="https://chat.whatsapp.com/Ks2abkgLzJjBOX79GyNZcI" target="_blank">Grup WhatsApp</a> 
+     <!-- Agrega más enlaces de la comunidad según sea necesario --> 
+    </div> 
+   </div> 
+   <div class="footer"> 
+    <img src="https://telegra.ph/file/8a0429de145cf8b06c0d8.jpg" alt="" style="width:80px;height:80px;"> 
+    <div class="footer"> 
+     <p>© Alicha Bookster Apps 2024 - 2025</p> 
+     <p>Dibuat Oleh Fadlan Modders Apps</p> 
+     <script>
+        function comprar(producto) {
+            // Puedes personalizar esta función para manejar la compra
+            window.location.href = 'https://wa.me/6281400346604?text=Quiero comprar ' + producto;
+        }
+
+        function mostrarBYTRPXHROMEE() {
+            // Aquí puedes implementar lógica para mostrar un producto aleatorio
+            alert('BY TRPXHROMEE');
+        }
+
+        function mostrarPerfil() {
+            document.getElementById('overlay').style.display = 'block';
+            document.getElementById('profileSection').style.display = 'block';
+        }
+
+        function mostrarContacto() {
+            document.getElementById('overlay').style.display = 'block';
+            document.getElementById('contactModal').style.display = 'block';
+        }
+
+        function cerrarVentana(ventanaId) {
+            document.getElementById(ventanaId).style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
+        }
+
+        // Script para mostrar la hora y fecha actual
+        function mostrarHoraFecha() {
+            var ahora = new Date();
+            var opciones = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', timeZoneName: 'short' };
+            var horaFecha = ahora.toLocaleDateString('es-ES', opciones);
+            document.getElementById('clock').textContent = horaFecha;
+        }
+
+        // Actualiza la hora y fecha cada segundo
+        setInterval(mostrarHoraFecha, 1000);
+
+        // Muestra la hora y fecha al cargar la página
+        mostrarHoraFecha();
+    </script> 
+    </div>
+   </div>
+  </div>
+ </body>
+</html>
